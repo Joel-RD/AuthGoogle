@@ -1,0 +1,19 @@
+<div class="container">
+  {{#each products}}
+    <div class="card" style="width: 18rem;">
+      {{!-- <img src="{{{image}}}}" alt="img1" class="card-img-top"> --}}
+      <div class="card-body">
+        <h5 class="card-title">{{name}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{email}}</h6>
+        <form action="/update" method="GET">
+          <input type="hidden" name="id" value="{{id}}" />
+          <button type="submit" class="btn btn-primary">Actualizar</button>
+        </form>
+        <form action="/{{{id}}}" method="POST">
+          <input type="hidden" name="id" />
+          <button type="submit" class="btn btn-danger">Eliminar</button>
+        </form>
+      </div>
+    </div>
+  {{/each}}
+</div>

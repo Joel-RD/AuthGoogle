@@ -1,0 +1,32 @@
+{{!-- <form action="/update" method="POST">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" required value="{{name}}" />
+
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" required value="{{email}}" />
+
+  <button type="submit">Actualizar</button>
+</form>
+<p>{{name}}</p>
+<p>{{email}}</p>
+<br /> --}}
+
+<div class="container">
+  {{!-- {{#each user}} --}}
+  <form action="/update" method="POST">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required value="{{{user.name}}}" />
+
+    <label for="email">Email:</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      required
+      value="{{user.email}}"
+    />
+
+    <button type="submit">Actualizar</button>
+  </form>
+  {{!-- {{/each}} --}}
+</div>
