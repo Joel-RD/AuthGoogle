@@ -10,7 +10,7 @@ const { VERCEL_CONNECTION, LOCAL_CONNECTION } = process.env;
 export const db = () => {
   try {
     return new Pool({
-      connectionString:  LOCAL_CONNECTION,
+      connectionString:  VERCEL_CONNECTION || LOCAL_CONNECTION,
     });
   } catch (error) {
     console.log(error);
