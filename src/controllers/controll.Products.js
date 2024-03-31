@@ -1,4 +1,6 @@
 import db from "../models/db.js";
+import __dirname from "../utils/utils.js";
+import path from "path";
 
 const pool = db();
 
@@ -8,27 +10,30 @@ export const createProduct = (req, res) => {
 };
 
 export const PostcreateProduct = async (req, res) => {
-  const { name, email } = req.body;
+  try {
+    const { name, email } = req.body;
+    if (!name || !email) {
+      return res.send("Name, email and image are required in the request body");
+    }
 
-  if (!req.body || !req.body.name || !req.body.email) {
-    return res
-      .status(400)
-      .json({ message: "Name and email are required in the request body" });
+    const userExists = await pool.query(
+      "SELECT 1 FROM users WHERE email = $1",
+      [email]
+    );
+
+    if (userExists.rowCount === 1) {
+      return res.status(400).send("the user exists");
+    }
+
+    const queryResult = await pool.query(
+      "INSERT INTO users (name, email, filename) VALUES ($1, $2, $3) RETURNING *",
+      [name, email, req.file.filename]
+    );
+
+    res.redirect("/");
+  } catch (error) {
+    console.error(error);
   }
-
-  const userExists = await pool.query("SELECT 1 FROM users WHERE email = $1", [
-    email,
-  ]);
-  if (userExists.rowCount === 1) {
-    return res.status(400).send("the user exists");
-  }
-
-  const queryResult = await pool.query(
-    "INSERT INTO users (name, email) VALUES ($1, $2) RETURNING *",
-    [name, email]
-  );
-
-  res.redirect("/");
 };
 
 //Get products

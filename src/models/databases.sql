@@ -1,16 +1,11 @@
 -- Create a new database called 'DatabaseName'
-
 CREATE DATABASE AppClient;
 
+CREATE TABLE products (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(30) NOT NULL,
+    price INTEGER  NOT NULL,
+    filename TEXT UNIQUE
+);
 
-CREATE TABLE "users" ( id SERIAL PRIMARY KEY,
-                                        name VARCHAR(30),
-                                             email TEXT);
-
-
-INSERT INTO "users" (name,
-                    email)
-VALUES ('joel',
-        'joel@gmail.com'), ('eudy',
-                            'eudy@gmail.com');
-
+INSERT INTO users (name, email, filename) VALUES ('John Doe', 'john@example.com', 'profile.jpg');

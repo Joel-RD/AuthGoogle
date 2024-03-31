@@ -4,6 +4,7 @@ import morgan from "morgan";
 import { __dirname } from "../utils/utils.js";
 import path from "path";
 
+
 const app = express();
 
 export const middleware = (app) => {
@@ -18,6 +19,7 @@ export const middleware = (app) => {
 
   //Configuración de archivos estáticos
   app.use(express.static(path.join(__dirname, "src/public")));
+  app.use(express.static(path.join(__dirname, "src/public/uploads")));
 };
 
 export default middleware;
