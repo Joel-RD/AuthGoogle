@@ -10,16 +10,17 @@ import {
   putUpdayeById,
 } from "../controllers/controll.Products.js";
 
+import { IsAuthenticated } from "../utils/utils.js";
 import storage from "../middlewares/multer.js";
 
 const router = Router();
 
-router.get("/", getProducts);
-router.get("/products/:id", getProductsById);
-router.post("/create", storage.single("image") ,PostcreateProduct);
-router.get("/create", createProduct);
-router.get("/update", getUpdate);
-router.post("/update", putUpdayeById); //Tiene que ser con put.
-router.post("/:id", deleteById); //Tiene que ser con delete.
+// router.get("/", getProducts);
+router.get("/products/:id", [IsAuthenticated], getProductsById);
+router.post("/create", [IsAuthenticated], storage.single("image") ,PostcreateProduct);
+router.get("/create", [IsAuthenticated] ,createProduct);
+router.get("/update", [IsAuthenticated] ,getUpdate);
+router.post("/update", [IsAuthenticated] ,putUpdayeById); //Tiene que ser con put.
+router.post("/:id", [IsAuthenticated] ,deleteById); //Tiene que ser con delete.
 
 export default router;

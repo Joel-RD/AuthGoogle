@@ -1,6 +1,7 @@
 import express from "express";
 import exphbs from "express-handlebars";
 import morgan from "morgan";
+import cookieParser from "cookie-parser";
 import { __dirname } from "../utils/utils.js";
 import path from "path";
 
@@ -11,6 +12,7 @@ export const middleware = (app) => {
   app.use(morgan("dev"));
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
+  app.use(cookieParser());
 
   //Configuración de Handlebars
   app.engine("handlebars", exphbs.engine());

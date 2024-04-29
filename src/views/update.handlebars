@@ -1,32 +1,12 @@
-{{!-- <form action="/update" method="POST">
-  <label for="name">Name:</label>
-  <input type="text" id="name" name="name" required value="{{name}}" />
-
-  <label for="email">Email:</label>
-  <input type="email" id="email" name="email" required value="{{email}}" />
-
-  <button type="submit">Actualizar</button>
-</form>
-<p>{{name}}</p>
-<p>{{email}}</p>
-<br /> --}}
-
 <div class="container">
-  {{!-- {{#each user}} --}}
-  <form action="/update" method="POST">
+  {{!-- {{#each products}} --}}
+  <form action="/update?id={{products.id}}" method="POST">
     <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required value="{{{user.name}}}" />
+    <input type="text" id="name" name="name" required value="{{{products.name}}}" />
+    
+    <label for="preci">Price</label>
+    <input type="number" id="preci" name="price" required value="{{products.price}}" />
 
-    <label for="email">Email:</label>
-    <input
-      type="email"
-      id="email"
-      name="email"
-      required
-      value="{{user.email}}"
-    />
-
-    <button type="submit">Actualizar</button>
+    <button type="submit">update</button>
   </form>
-  {{!-- {{/each}} --}}
 </div>
